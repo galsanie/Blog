@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-
-<title>{% block heading %} Detail {% endblock %}</title>
+{% load share %}
+{% block heading %} Detail {% endblock %}
 
 {% block content %}
 <div class="col-sm-6 col-sm-offset-3">
@@ -10,10 +10,21 @@
   
 </div>
 	<ul>
-		<a{{item.title}}</li> </a>
+		<a{{item.title}}> </a>
 		<li>{{item.content}}</li>
-		<li>{{item.id}}</li>
+		<li>{{item.slug}}</li>
 
 	</ul>
+	<a href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}">
+        <i class="fa fa-facebook"></i>
+    </a>
+
+    <a href="https://twitter.com/home?status={{item.content|truncatechars:140|share}}%20{{request.build_absolute_uri}}">
+    Share on Twitter
+	</a>
+
+	<a href="https://www.linkedin.com/shareArticle?mini=true&url={{request.build_absolute_uri}}&title={{instance.title|share}}&summary={{instance.content|truncatechars:35|share}}&source={{request.build_absolute_uri}}">
+    Share on Linkedin
+    </a>
 
 {% endblock %}
