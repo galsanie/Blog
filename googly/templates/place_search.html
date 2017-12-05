@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+    
+{% block content %}
+    
+<form action="{% url 'googly:place-search' %}" method="GET">
+    <div class="col-lg-6 nav-bar-bottom-mgn">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." name="query">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="submit">Go!</button>
+      </span>
+    </div>
+    </div>
+</form>
+<div><br></br>
+
+
+
+</div>
+
+<div>
+{% for x in response.results %} 
+    {{ x.name }} <br>
+    {{ x.formatted_address }} <br>
+    <form action="{% url 'googly:place-detail' %}" method="GET">
+        <input type="hidden" name="place_id" value="{{x.place_id}}">
+        <input type="submit" value="Detail" class="btn btn-outline-info">
+    </form>
+    <br>
+{% endfor %}
+{% if response.next_page_token %}   
+    <form action="{% url 'googly:place-search' %}" method="GET">
+        <input type="hidden" name="nextpage" value="{{response.next_page_token}}">
+        <input type="submit" value="more ..." class="btn btn-outline-info">
+    </form>
+{% endif %}
+</div>
+{% endblock content %}

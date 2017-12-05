@@ -146,7 +146,7 @@ def usersignup(request):
             login(request, auth)
             return redirect("posts:list")
         messages.warning(request, form.errors)
-        return redirect("posts:signup")
+        return redirect("posts:usersignup")
     return render(request, 'signup.html', context)
 
 def userlogin(request):
@@ -163,14 +163,14 @@ def userlogin(request):
                 login(request, auth)
                 return redirect("posts:list")
             messages.warning(request, 'Incorrect Username/Password combination. *cough cough* noob.')
-            return redirect("posts:login")
+            return redirect("posts:userlogin")
         messages.warning(request, form.errors)
-        return redirect("posts:login")
+        return redirect("posts:userlogin")
     return render(request, 'login.html', context)
 
 def userlogout(request):
     logout(request)
-    return redirect("posts:login")
+    return redirect("posts:userlogin")
 
 
 

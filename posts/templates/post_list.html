@@ -36,9 +36,9 @@
     <p class="card-text">{{item.author.username}}</p>
     <p class="card-text">{{item.author.get_full_name}}</p>
     <p class="card-text">{{item.author.last_login}}</p>
-    <a href="{{ item.get_absolute_url }}" class="btn btn-success" role="button">View</a>
+    <a href="{{ item.get_absolute_url }}" class="btn btn-secondary" role="button">View</a>
 	<a href="{% url 'posts:update' post_slug=item.slug %}" class="btn btn-primary">Update</a>
-	<a href="{% url 'posts:delete' post_slug=item.slug %}" class="btn btn-danger">Delete</a>
+	<a href="{% url 'posts:delete' post_slug=item.slug %}" class="btn btn-outline-danger">Delete</a>
 
 </div>
   </div>
